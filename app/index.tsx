@@ -1,10 +1,10 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 
-export default function Notfound() {
+export default function index() {
   return (
     <View>
-      <Text>[...notfound]</Text>
+      <Text>index</Text>
     </View>
   );
 }
