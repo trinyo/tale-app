@@ -9,6 +9,22 @@ import { SplashScreen, Stack } from "expo-router";
 import { useEffect } from "react";
 import { useColorScheme } from "react-native";
 
+import { Tabs } from "expo-router";
+
+const bg_image = require("../assets/images/layered-waves-haikei.png");
+
+const MyTheme = {
+  dark: false,
+  colors: {
+    primary: "rgb(255, 45, 85)",
+    background: "#f0f0f0",
+    card: "rgb(255, 255, 255)",
+    text: "rgb(28, 28, 30)",
+    border: "rgb(199, 199, 204)",
+    notification: "rgb(255, 69, 58)",
+  },
+};
+
 export {
   // Catch any errors thrown by the Layout component.
   ErrorBoundary,
@@ -45,9 +61,14 @@ function RootLayoutNav() {
   const colorScheme = useColorScheme();
 
   return (
-    <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="index" options={{ headerShown: false }} />
+    <ThemeProvider value={MyTheme}>
+      <Stack
+        screenOptions={{
+          headerShown: false,
+          contentStyle: { backgroundColor: "black" },
+        }}
+      >
+        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
       </Stack>
     </ThemeProvider>
   );
