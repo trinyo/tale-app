@@ -8,15 +8,21 @@ export default function _layout() {
     <Tabs
       screenOptions={{
         headerShown: false,
-        tabBarStyle: { backgroundColor: "#f5f5f5" },
+        tabBarStyle: {
+          position: "absolute",
+          bottom: 12,
+          marginHorizontal: 12,
+          elevation: 0,
+          borderRadius: 999,
+          height: 50,
+          backgroundColor: "#EAEAEA",
+          borderTopWidth: 0,
+        },
         tabBarShowLabel: false,
       }}
     >
       <Tabs.Screen name="sets" />
-      <Tabs.Screen
-        options={{ tabBarIcon: (props) => <Fogalmamnincs name="home" /> }}
-        name="index"
-      />
+      <Tabs.Screen options={{ tabBarIcon: (props) => <Fogalmamnincs name="home" /> }} name="index" />
       <Tabs.Screen
         // Name of the route to hide.
         name="settings"
