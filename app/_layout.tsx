@@ -7,6 +7,7 @@ import { useColorScheme } from "react-native";
 
 import { Tabs } from "expo-router";
 import { StatusBar } from "expo-status-bar";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 
 const bg_image = require("../assets/images/layered-waves-haikei.png");
 
@@ -64,14 +65,16 @@ function RootLayoutNav() {
 
   return (
     <ThemeProvider value={MyTheme}>
-      <Stack
-        screenOptions={{
-          headerShown: false,
-          contentStyle: { backgroundColor: "black" },
-        }}
-      >
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-      </Stack>
+      <SafeAreaProvider>
+        <Stack
+          screenOptions={{
+            headerShown: false,
+            contentStyle: { backgroundColor: "black" },
+          }}
+        >
+          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        </Stack>
+      </SafeAreaProvider>
       <StatusBar style="dark" />
     </ThemeProvider>
   );
