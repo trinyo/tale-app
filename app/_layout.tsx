@@ -1,15 +1,12 @@
 import FontAwesome from "@expo/vector-icons/FontAwesome";
-import {
-  DarkTheme,
-  DefaultTheme,
-  ThemeProvider,
-} from "@react-navigation/native";
+import { DarkTheme, DefaultTheme, ThemeProvider } from "@react-navigation/native";
 import { useFonts } from "expo-font";
 import { SplashScreen, Stack } from "expo-router";
 import { useEffect } from "react";
 import { useColorScheme } from "react-native";
 
 import { Tabs } from "expo-router";
+import { StatusBar } from "expo-status-bar";
 
 const bg_image = require("../assets/images/layered-waves-haikei.png");
 
@@ -29,6 +26,11 @@ export {
   // Catch any errors thrown by the Layout component.
   ErrorBoundary,
 } from "expo-router";
+
+export const unstable_settings = {
+  // Ensure any route can link back to `/`
+  initialRouteName: "(tabs)/index",
+};
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -70,6 +72,7 @@ function RootLayoutNav() {
       >
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
       </Stack>
+      <StatusBar style="dark" />
     </ThemeProvider>
   );
 }
