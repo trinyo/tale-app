@@ -7,11 +7,11 @@ export const DataSets = [
   {
     name: "Magyarország 1945-1956",
     data: Magyar19451956,
-    count: Magyar19451956.length,
+    count: Object.keys(Magyar19451956).length,
   },
   {
     name: "Magyarország Jelenkor",
     data: MagyarJelenkor,
-    count: MagyarJelenkor.length,
+    count: Object.keys(MagyarJelenkor).length,
   },
 ];
