@@ -1,5 +1,6 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
+import { useTheme } from "../contexts/ThemeProvider";
 
 interface IProps {
   title: string;
@@ -7,8 +8,10 @@ interface IProps {
 }
 
 export default function SetView({ title, count }: IProps) {
+  const theme = useTheme();
+
   return (
-    <View style={styles.view}>
+    <View style={[styles.view, { backgroundColor: theme.elevation1.normal }]}>
       <Text style={styles.title}>{title}</Text>
       <Text style={styles.count}>{count} card</Text>
     </View>
@@ -19,7 +22,6 @@ const styles = StyleSheet.create({
   view: {
     padding: 12,
     borderRadius: 8,
-    backgroundColor: "#F5F5F5",
     flexDirection: "column",
     gap: 4,
   },
