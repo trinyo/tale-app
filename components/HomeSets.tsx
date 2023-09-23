@@ -1,10 +1,10 @@
 import React from "react";
-import { Text, View, StyleSheet } from "react-native";
-
+import { View, StyleSheet } from "react-native";
+import Label from "./Label";
 export default function HomeSets(props: any) {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>{props.title}</Text>
+      <Label style={styles.text}>{props.title}</Label>
     </View>
   );
 }
