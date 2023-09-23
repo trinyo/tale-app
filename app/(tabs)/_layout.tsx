@@ -26,7 +26,7 @@ export default function _layout() {
           elevation: 0,
           borderRadius: 999,
           height: 50,
-          backgroundColor: theme.elevation1.hover,
+          backgroundColor: theme.elevation1.press,
           borderTopWidth: 0,
         },
         tabBarShowLabel: false,

@@ -1,9 +1,13 @@
 import React from "react";
 import { View, StyleSheet } from "react-native";
 import Label from "./Label";
+import { useTheme } from "@/contexts/ThemeProvider";
+
 export default function HomeSets(props: any) {
+  const theme = useTheme();
+
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { backgroundColor: theme.elevation1.normal }]}>
       <Label style={styles.text}>{props.title}</Label>
     </View>
   );
@@ -11,12 +15,10 @@ export default function HomeSets(props: any) {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#171717",
     padding: 12,
     borderRadius: 8,
   },
   text: {
-    color: "#FAFAFA",
     fontSize: 16,
     fontWeight: "500",
   },
