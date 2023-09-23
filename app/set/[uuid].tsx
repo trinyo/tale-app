@@ -5,6 +5,7 @@ import { useLocalSearchParams, useRouter } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
 import BackButton from "@/components/BackButton";
 import { useSet } from "@/hooks/useSet";
+import ModeButton from "@/components/ModeButton";
 
 export default function ViewSet() {
   const { uuid } = useLocalSearchParams();
@@ -17,13 +18,14 @@ export default function ViewSet() {
   }
 
   return (
-    <SafeAreaView style={{ padding: 12 }}>
+    <SafeAreaView style={{ padding: 12, display: "flex", flexDirection: "column", gap: 12 }}>
       <View style={styles.topBar}>
         <BackButton />
         <Label weight="medium" size={24}>
           {set.name}
         </Label>
       </View>
+      <ModeButton label="Flashcards" icon="article" />
     </SafeAreaView>
   );
 }
