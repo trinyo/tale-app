@@ -1,6 +1,7 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import React from "react";
 import { useTheme } from "../contexts/ThemeProvider";
+import Label from "./Label";
 
 interface IProps {
   title: string;
@@ -12,8 +13,8 @@ export default function SetView({ title, count }: IProps) {
 
   return (
     <View style={[styles.view, { backgroundColor: theme.elevation1.normal }]}>
-      <Text style={styles.title}>{title}</Text>
-      <Text style={styles.count}>{count} card</Text>
+      <Label style={styles.title}>{title}</Label>
+      <Label style={styles.count}>{count} card</Label>
     </View>
   );
 }
