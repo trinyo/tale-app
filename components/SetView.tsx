@@ -1,21 +1,27 @@
-import { StyleSheet, View } from "react-native";
+import { Pressable, StyleSheet } from "react-native";
 import React from "react";
 import { useTheme } from "../contexts/ThemeProvider";
 import Label from "./Label";
+import { useRouter } from "expo-router";
 
 interface IProps {
-  title: string;
+  name: string;
   count: number;
+  id: string;
 }
 
-export default function SetView({ title, count }: IProps) {
+export default function SetView({ name, count, id }: IProps) {
   const theme = useTheme();
+  const router = useRouter();
 
   return (
-    <View style={[styles.view, { backgroundColor: theme.elevation1.normal }]}>
-      <Label style={styles.title}>{title}</Label>
+    <Pressable
+      style={[styles.view, { backgroundColor: theme.elevation1.normal }]}
+      onPress={() => router.push({ pathname: "/set/[uuid]", params: { uuid: id } })}
+    >
+      <Label style={styles.title}>{name}</Label>
       <Label style={styles.count}>{count} card</Label>
-    </View>
+    </Pressable>
   );
 }
 

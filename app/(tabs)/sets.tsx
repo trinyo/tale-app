@@ -9,11 +9,7 @@ export default function sets() {
   return (
     <SafeAreaView style={styles.container}>
       <Label style={styles.title}>Sets</Label>
-      <FlatList
-        data={DataSets}
-        renderItem={({ item }) => <SetView title={item.name} count={item.count} />}
-        ItemSeparatorComponent={() => <View style={{ height: 12 }} />}
-      />
+      <FlatList data={DataSets} renderItem={({ item }) => <SetView {...item} />} ItemSeparatorComponent={() => <View style={{ height: 12 }} />} />
     </SafeAreaView>
   );
 }

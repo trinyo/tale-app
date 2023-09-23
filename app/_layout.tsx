@@ -45,7 +45,9 @@ function RootLayoutNav() {
     <ThemeProvider>
       <SafeAreaProvider>
         <Stack screenOptions={{ headerShown: false }}>
-          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+          <Stack.Screen name="(tabs)" />
+
+          <Stack.Screen name="set/[uuid]" />
         </Stack>
       </SafeAreaProvider>
       <StatusBar style={colorScheme === "dark" ? "light" : "dark"} />
