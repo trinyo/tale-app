@@ -20,7 +20,9 @@ export default function ViewSet() {
     <SafeAreaView style={{ padding: 12 }}>
       <View style={styles.topBar}>
         <BackButton />
-        <Label style={styles.title}>{set.name}</Label>
+        <Label weight="medium" size={24}>
+          {set.name}
+        </Label>
       </View>
     </SafeAreaView>
   );
@@ -31,9 +33,5 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     gap: 8,
     alignItems: "center",
-  },
-  title: {
-    fontWeight: "500",
-    fontSize: 24,
   },
 });

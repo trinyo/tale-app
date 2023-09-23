@@ -19,8 +19,10 @@ export default function SetView({ name, count, id }: IProps) {
       style={[styles.view, { backgroundColor: theme.elevation1.normal }]}
       onPress={() => router.push({ pathname: "/set/[uuid]", params: { uuid: id } })}
     >
-      <Label style={styles.title}>{name}</Label>
-      <Label style={styles.count}>{count} card</Label>
+      <Label weight="medium">{name}</Label>
+      <Label weight="light" size={14} style={styles.count}>
+        {count} card
+      </Label>
     </Pressable>
   );
 }
@@ -38,7 +40,5 @@ const styles = StyleSheet.create({
   },
   count: {
     color: "#4F4F4F",
-    fontWeight: "300",
-    fontSize: 14,
   },
 });

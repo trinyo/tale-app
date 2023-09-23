@@ -8,7 +8,9 @@ import Label from "@/components/Label";
 export default function sets() {
   return (
     <SafeAreaView style={styles.container}>
-      <Label style={styles.title}>Sets</Label>
+      <Label weight="bold" size={28}>
+        Sets
+      </Label>
       <FlatList data={DataSets} renderItem={({ item }) => <SetView {...item} />} ItemSeparatorComponent={() => <View style={{ height: 12 }} />} />
     </SafeAreaView>
   );
@@ -17,9 +19,5 @@ export default function sets() {
 const styles = StyleSheet.create({
   container: {
     padding: 12,
-  },
-  title: {
-    fontSize: 28,
-    fontWeight: "bold",
   },
 });
