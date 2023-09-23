@@ -1,11 +1,11 @@
 import FontAwesome from "@expo/vector-icons/FontAwesome";
-import { ThemeProvider as NavThemeProvider } from "@react-navigation/native";
 import { useFonts } from "expo-font";
 import { SplashScreen, Stack } from "expo-router";
 import { useEffect } from "react";
 import { StatusBar } from "expo-status-bar";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { ThemeProvider } from "../contexts/ThemeProvider";
+import { useColorScheme } from "react-native";
 
 export { ErrorBoundary } from "expo-router";
 
@@ -39,16 +39,16 @@ export default function RootLayout() {
 }
 
 function RootLayoutNav() {
+  const colorScheme = useColorScheme() || "light";
+
   return (
     <ThemeProvider>
-      <NavThemeProvider value={MyTheme}>
-        <SafeAreaProvider>
+      <SafeAreaProvider>
         <Stack screenOptions={{ headerShown: false }}>
           <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         </Stack>
       </SafeAreaProvider>
-        <StatusBar style="dark" />
-      </NavThemeProvider>
+      <StatusBar style={colorScheme} />
     </ThemeProvider>
   );
 }

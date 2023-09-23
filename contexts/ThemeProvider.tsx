@@ -1,6 +1,8 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { Colors, INeutralColor } from "../data/Colors";
 import { Appearance, useColorScheme } from "react-native";
+import { useMemo } from "react";
+import { ThemeProvider as NavThemeProvider } from "@react-navigation/native";
 
 const ThemeContext = React.createContext<INeutralColor>(Colors.neutral.dark);
 const ThemeUpdateContext = React.createContext<(arg0: "dark" | "light") => void>(() => {});
@@ -51,7 +53,29 @@ export function ThemeProvider({ children }: React.PropsWithChildren) {
 
   return (
     <ThemeContext.Provider value={theme}>
-      <ThemeUpdateContext.Provider value={changeTheme}>{children}</ThemeUpdateContext.Provider>
+      <ThemeUpdateContext.Provider value={changeTheme}>
+        <NavigationThemeProvider>{children}</NavigationThemeProvider>
+      </ThemeUpdateContext.Provider>
     </ThemeContext.Provider>
   );
+}
+
+export default function NavigationThemeProvider({ children }: React.PropsWithChildren) {
+  const theme = useTheme();
+
+  const navTheme = useMemo(() => {
+    return {
+      dark: true,
+      colors: {
+        primary: "rgb(0,0,0)",
+        background: theme.background,
+        card: "rgb(0,0,0)",
+        text: "rgb(0,0,0)",
+        border: "rgb(0,0,0)",
+        notification: "rgb(0,0,0)",
+      },
+    };
+  }, [theme]);
+
+  return <NavThemeProvider value={navTheme}>{children}</NavThemeProvider>;
 }
