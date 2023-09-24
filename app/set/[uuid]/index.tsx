@@ -25,7 +25,7 @@ export default function ViewSet() {
           {set.name}
         </Label>
       </View>
-      <ModeButton label="Flashcards" icon="article" />
+      <ModeButton label="Flashcards" icon="article" route="flashcards" />
     </SafeAreaView>
   );
 }

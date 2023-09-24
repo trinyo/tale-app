@@ -49,7 +49,7 @@ function RootLayoutNav() {
         <Stack screenOptions={{ headerShown: false }}>
           <Stack.Screen name="(tabs)" />
 
-          <Stack.Screen name="set/[uuid]" />
+          <Stack.Screen name="set/[uuid]/index" />
         </Stack>
       </SafeAreaProvider>
       <StatusBar style={colorScheme === "dark" ? "light" : "dark"} />
