@@ -6,12 +6,22 @@ import { MaterialIcons } from "@expo/vector-icons";
 import { useTheme } from "@/contexts/ThemeProvider";
 import { Colors } from "@/data/Colors";
 import Flashcard from "@/components/Flashcard";
+import { Redirect, useLocalSearchParams } from "expo-router";
+import { useSet } from "@/hooks/useSet";
 
 export default function flashcards() {
+  const { uuid } = useLocalSearchParams();
+
   const theme = useTheme();
 
-  const current = 5; // TODO: implement logic with state
-  const progressPercent = useMemo(() => (current / 75) * 100, [current]); // TODO: implement logic with dynamic set count
+  const set = useSet(uuid.toString())?.data;
+
+  const [current, setCurrent] = useState(0);
+  const progressPercent = useMemo(() => (current / 75) * 100, [current]);
+
+  if (!set) {
+    return <Redirect href={"/error"} />;
+  }
 
   return (
     <SafeAreaView style={{ padding: 12, display: "flex", flexDirection: "column", gap: 12, flex: 1 }}>
@@ -23,12 +33,12 @@ export default function flashcards() {
       </View>
       <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
         {/* flashcard */}
-        <Flashcard />
+        <Flashcard data={set} current={current} />
       </View>
       <View style={styles.bottomBar}>
         {/* progress */}
         <Label weight="medium" size={24}>
-          5/75
+          {current + 1}/75
         </Label>
         <View style={[styles.progressBackground, { backgroundColor: theme.elevation1.normal }]}>
           <View style={[styles.progress, { width: `${progressPercent}%` }]} />
