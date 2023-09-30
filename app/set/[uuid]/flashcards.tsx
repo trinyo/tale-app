@@ -18,6 +18,12 @@ export default function flashcards() {
 
   const [current, setCurrent] = useState(0);
   const progressPercent = useMemo(() => (current / 75) * 100, [current]);
+  const longestDefinition = useMemo(() => {
+    if (!set) return 999;
+    return Object.values(set)
+      .map((definition) => definition.length)
+      .sort((a, b) => b - a)[0];
+  }, [set]);
 
   if (!set) {
     return <Redirect href={"/error"} />;
@@ -33,7 +39,7 @@ export default function flashcards() {
       </View>
       <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
         {/* flashcard */}
-        <Flashcard data={set} current={current} />
+        <Flashcard data={set} current={current} maximumDifficulity={longestDefinition} />
       </View>
       <View style={styles.bottomBar}>
         {/* progress */}
