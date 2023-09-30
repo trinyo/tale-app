@@ -44,7 +44,7 @@ export default function flashcards() {
       <View style={styles.bottomBar}>
         {/* progress */}
         <Label weight="medium" size={24}>
-          {current + 1}/75
+          {current + 1}/{Object.keys(set).length}
         </Label>
         <View style={[styles.progressBackground, { backgroundColor: theme.elevation1.normal }]}>
           <View style={[styles.progress, { width: `${progressPercent}%` }]} />
