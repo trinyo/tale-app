@@ -20,13 +20,6 @@ export default function Flashcard({ data, current, maximumDifficulity }: IProps)
   const [flipped, setFlipped] = useState(false);
   const [zFlipped, setZFlipped] = useState(false);
 
-  const difficulityColor = useMemo(() => {
-    const relativeDifficulity = data[Object.keys(data)[current]].length / maximumDifficulity;
-    if (relativeDifficulity > 0.66) return Colors.accent.red.normal;
-    else if (relativeDifficulity > 0.33) return Colors.accent.yellow.normal;
-    else return Colors.accent.primary.normal;
-  }, [current]);
-
   const difficulityBackground = useMemo(() => {
     const relativeDifficulity = data[Object.keys(data)[current]].length / maximumDifficulity;
     if (relativeDifficulity > 0.66) return BackgroundImageHard;
@@ -66,19 +59,20 @@ export default function Flashcard({ data, current, maximumDifficulity }: IProps)
         style={[
           styles.container,
           {
-            backgroundImage: difficulityBackground,
             backgroundColor: theme.elevation1.normal,
             transform: [{ rotateY: frontRotation }],
             zIndex: zFlipped ? 0 : 1,
           },
         ]}
       >
-        <ImageBackground source={difficulityBackground} style={styles.image}>
+        <ImageBackground source={difficulityBackground} style={styles.image} imageStyle={{ borderRadius: 8 }} blurRadius={0}>
           <Label>{Object.keys(data)[current]}</Label>
         </ImageBackground>
       </Animated.View>
-      <Animated.View style={[styles.container, styles.definitionCard, { backgroundColor: theme.elevation1.normal, transform: [{ rotateY: backRotation }] }]}>
-        <ScrollView>
+      <Animated.View
+        style={[styles.container, styles.definitionCard, { backgroundColor: theme.elevation1.normal, transform: [{ rotateY: backRotation }], paddingTop: 12 }]}
+      >
+        <ScrollView style={{ flex: 1 }} contentContainerStyle={{ justifyContent: "center" }}>
           <Label>{data[Object.keys(data)[current]]}</Label>
         </ScrollView>
       </Animated.View>
@@ -92,8 +86,8 @@ const styles = StyleSheet.create({
     width: "100%",
     height: "100%",
     borderRadius: 8,
-    gap: 4,
     alignItems: "center",
+    justifyContent: "center",
   },
   definitionCard: {
     paddingHorizontal: 12,
@@ -102,8 +96,9 @@ const styles = StyleSheet.create({
     overflow: "scroll",
   },
   image: {
+    justifyContent: "center",
+    alignItems: "center",
     flex: 1,
     width: "100%",
-    height: "100%",
   },
 });
