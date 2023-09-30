@@ -1,4 +1,4 @@
-import { Pressable, StyleSheet, Text, View, Animated, Easing } from "react-native";
+import { Pressable, StyleSheet, Text, View, Animated, Easing, ScrollView } from "react-native";
 import React, { useEffect, useMemo, useState } from "react";
 import Label from "./Label";
 import { useTheme } from "@/contexts/ThemeProvider";
@@ -57,8 +57,10 @@ export default function Flashcard({ data, current, maximumDifficulity }: IProps)
         <View style={{ height: 20, width: "100%", backgroundColor: difficulityColor }} />
         <Label>{Object.keys(data)[current]}</Label>
       </Animated.View>
-      <Animated.View style={[styles.container, { backgroundColor: theme.elevation1.normal, transform: [{ rotateY: backRotation }] }]}>
-        <Label>{data[Object.keys(data)[current]]}</Label>
+      <Animated.View style={[styles.container, styles.definitionCard, { backgroundColor: theme.elevation1.normal, transform: [{ rotateY: backRotation }] }]}>
+        <ScrollView>
+          <Label>{data[Object.keys(data)[current]]}</Label>
+        </ScrollView>
       </Animated.View>
     </Pressable>
   );
@@ -73,5 +75,11 @@ const styles = StyleSheet.create({
     paddingTop: 12,
     gap: 4,
     alignItems: "center",
+  },
+  definitionCard: {
+    paddingHorizontal: 12,
+    paddingBottom: 12,
+    textAlign: "justify",
+    overflow: "scroll",
   },
 });
