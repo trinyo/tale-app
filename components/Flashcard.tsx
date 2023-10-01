@@ -1,4 +1,4 @@
-import { Pressable, StyleSheet, Text, View, Animated, Easing, ScrollView, ImageBackground } from "react-native";
+import { Pressable, StyleSheet, Text, View, Animated, Easing, ScrollView, ImageBackground, LayoutChangeEvent } from "react-native";
 import React, { useEffect, useMemo, useState } from "react";
 import Label from "./Label";
 import { useTheme } from "@/contexts/ThemeProvider";
@@ -54,7 +54,7 @@ export default function Flashcard({ data, current, maximumDifficulity }: IProps)
   }, [flipped]);
 
   return (
-    <Pressable onPress={() => setFlipped((value) => !value)} style={{ width: "100%", height: "60%" }}>
+    <Pressable onPress={() => setFlipped((value) => !value)} style={{ position: "relative", top: 0, left: 0, width: "100%", height: "60%" }}>
       <Animated.View
         style={[
           styles.container,

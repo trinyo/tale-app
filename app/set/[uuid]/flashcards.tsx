@@ -1,13 +1,13 @@
-import { Pressable, StyleSheet, Text, View } from "react-native";
-import React, { useEffect, useMemo, useState } from "react";
+import { Pressable, StyleSheet, View } from "react-native";
+import React, { useMemo, useState } from "react";
 import Label from "@/components/Label";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { MaterialCommunityIcons, MaterialIcons } from "@expo/vector-icons";
+import { MaterialIcons } from "@expo/vector-icons";
 import { useTheme } from "@/contexts/ThemeProvider";
 import { Colors } from "@/data/Colors";
-import Flashcard from "@/components/Flashcard";
 import { Redirect, useLocalSearchParams } from "expo-router";
 import { useSet } from "@/hooks/useSet";
+import FlashcardStepper from "@/components/FlashcardStepper";
 
 export default function flashcards() {
   const { uuid } = useLocalSearchParams();
@@ -39,21 +39,13 @@ export default function flashcards() {
       </View>
       <View style={{ flex: 1, justifyContent: "center", alignItems: "center", gap: 8 }}>
         {/* flashcard */}
-        <Flashcard data={set} current={current} maximumDifficulity={longestDefinition} />
-        <View style={{ flexDirection: "row", gap: 8 }}>
-          <Pressable
-            onPress={() => setCurrent((value) => (value > 0 ? value - 1 : value))}
-            style={({ pressed }) => [styles.stepButton, { backgroundColor: theme.elevation1[pressed ? "press" : "normal"] }]}
-          >
-            <MaterialCommunityIcons name="arrow-left" size={24} color={theme.text} />
-          </Pressable>
-          <Pressable
-            onPress={() => setCurrent((value) => (value < Object.keys(set).length - 1 ? value + 1 : value))}
-            style={({ pressed }) => [styles.stepButton, { backgroundColor: theme.elevation1[pressed ? "press" : "normal"] }]}
-          >
-            <MaterialCommunityIcons name="arrow-right" size={24} color={theme.text} />
-          </Pressable>
-        </View>
+        <FlashcardStepper
+          onForward={() => setCurrent((value) => (value < Object.keys(set).length - 1 ? value + 1 : value))}
+          onBack={() => setCurrent((value) => (value > 0 ? value - 1 : value))}
+          data={set}
+          current={current}
+          maximumDifficulity={longestDefinition}
+        />
       </View>
       <View style={styles.bottomBar}>
         {/* progress */}
